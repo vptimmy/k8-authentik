@@ -1,0 +1,16 @@
+apiVersion: v2
+name: helm
+description: A Helm chart for Authentik
+type: application
+
+version: 0.1.0
+appVersion: "0.1.0"
+
+maintainers:
+  - name: Tim Hibbard
+    email: vptimmy@gmail.com
+
+dependencies:
+  - name: authentik
+    version: "2022.7.3"
+    repository:  https://charts.goauthentik.io

@@ -1,0 +1,11 @@
+
+
+{{- if .Values.authentik.ingress.enabled }}
+{{- range $host := .Values.authentik.ingress.hosts }}
+For a first time setup please visit:
+https://{{ $host.host }}/if/flow/initial-setup/
+
+Otherwise vist:
+https://{{ $host.host }}
+{{- end }}
+{{- end }}

@@ -1,0 +1,47 @@
+# Decrypt the templates/sealed-secrets and read the values
+authentik:
+  envValueFrom:        
+    AUTHENTIK_SECRET_KEY:
+      secretKeyRef:
+        name: authentik-secrets
+        key: SECRET_KEY
+    POSTGRES_POSTGRES_PASSWORD:
+      secretKeyRef:
+        name: authentik-postgresql
+        key: postgresql-postgres-password
+    POSTGRES_PASSWORD:
+      secretKeyRef:
+        name: authentik-postgresql
+        key: postgresql-password
+    POSTGRES_PASSWORD:
+      secretKeyRef:
+        name: authentik-postgresql
+        key: postgresql-password
+
+  authentik:
+    error_reporting:
+      enabled: true
+
+  ingress:
+    ingressClassName: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: homelab-ca-issuer  
+    enabled: true
+    hosts:
+      - host: authentik.home.lab
+        paths:
+          - path: "/"
+            pathType: Prefix
+    tls:
+    - hosts:
+      - authentik.home.lab
+      secretName: tls-authentik.home.lab
+
+  postgresql:
+    enabled: true
+
+  redis:
+    enabled: true
+
+  service:
+    enabled: true
